@@ -6,7 +6,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import { searchMovies, Movie, getImageUrl } from '../services/tmdb';
 import useDebounce from '../hooks/useDebounce';
 import NotificationMenu from './NotificationMenu';
-import VideoPlayer from './VideoPlayer';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import MenuIcon from '@mui/icons-material/Menu';
 
@@ -36,14 +35,8 @@ const Navbar = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [genreAnchorEl, setGenreAnchorEl] = useState<null | HTMLElement>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [avatarAnchorEl, setAvatarAnchorEl] = useState<null | HTMLElement>(null);
   const debouncedSearchQuery = useDebounce(searchQuery, 500);
-
-  const pages = [
-    { label: 'Home', path: '/' },
-    { label: 'TV Shows', path: '/browse/tv' },
-    { label: 'Movies', path: '/browse/movies' },
-    { label: 'My List', path: '/browse/mylist' }
-  ];
 
   useEffect(() => {
     const fetchSearchResults = async () => {
@@ -66,6 +59,14 @@ const Navbar = () => {
     fetchSearchResults();
   }, [debouncedSearchQuery]);
 
+  const handleAvatarMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAvatarAnchorEl(event.currentTarget);
+  };
+
+  const handleAvatarClose = () => {
+    setAvatarAnchorEl(null);
+  };
+
   const handleNotificationMenu = (event: React.MouseEvent<HTMLElement>) => {
     setNotificationAnchorEl(event.currentTarget);
   };
@@ -76,6 +77,7 @@ const Navbar = () => {
 
   const handleNavigation = (path: string) => {
     navigate(path);
+    handleAvatarClose();
   };
 
   const handleSearchToggle = () => {
@@ -342,7 +344,7 @@ const Navbar = () => {
                   />
                 </IconButton>
                 <IconButton
-                  onClick={handleMenu}
+                  onClick={handleAvatarMenu}
                   sx={{ p: 0 }}
                 >
                   <Avatar
