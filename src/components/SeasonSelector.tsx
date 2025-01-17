@@ -26,14 +26,12 @@ interface SeasonSelectorProps {
 const SeasonSelector = ({ tvId, seasons, onEpisodeSelect }: SeasonSelectorProps) => {
   const [selectedSeason, setSelectedSeason] = useState<number>(1);
   const [episodes, setEpisodes] = useState<Episode[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [episodeProgress, setEpisodeProgress] = useState<{ [key: string]: number }>({});
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   useEffect(() => {
     const loadEpisodes = async () => {
       try {
-        setIsLoading(true);
         const data = await getTVShowEpisodes(tvId, selectedSeason);
         setEpisodes(data.episodes);
 
@@ -46,8 +44,6 @@ const SeasonSelector = ({ tvId, seasons, onEpisodeSelect }: SeasonSelectorProps)
         setEpisodeProgress(progressMap);
       } catch (error) {
         console.error('Failed to load episodes:', error);
-      } finally {
-        setIsLoading(false);
       }
     };
 

@@ -5,7 +5,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Movie, MovieResponse, getTrendingMovies, getTrendingTVShows, getImageUrl } from '../services/tmdb';
+import { Movie, getTrendingMovies, getTrendingTVShows, getImageUrl } from '../services/tmdb';
 import { addToMyList, removeFromMyList, isInMyList } from '../services/myList';
 import VideoPlayer from './VideoPlayer';
 

@@ -29,17 +29,14 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const isHome = location.pathname === '/';
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [notificationAnchorEl, setNotificationAnchorEl] = useState<null | HTMLElement>(null);
   const [showSearch, setShowSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<Movie[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [showVideoPlayer, setShowVideoPlayer] = useState(false);
-  const debouncedSearchQuery = useDebounce(searchQuery, 500);
   const [genreAnchorEl, setGenreAnchorEl] = useState<null | HTMLElement>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [selectedMovie, setSelectedMovie] = useState<{ id: number; type: 'movie' | 'tv' } | null>(null);
+  const debouncedSearchQuery = useDebounce(searchQuery, 500);
 
   const pages = [
     { label: 'Home', path: '/' },
@@ -69,16 +66,8 @@ const Navbar = () => {
     fetchSearchResults();
   }, [debouncedSearchQuery]);
 
-  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
   const handleNotificationMenu = (event: React.MouseEvent<HTMLElement>) => {
     setNotificationAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
   };
 
   const handleNotificationClose = () => {
@@ -87,7 +76,6 @@ const Navbar = () => {
 
   const handleNavigation = (path: string) => {
     navigate(path);
-    handleClose();
   };
 
   const handleSearchToggle = () => {
@@ -499,13 +487,6 @@ const Navbar = () => {
           </MenuItem>
         ))}
       </Menu>
-
-      <VideoPlayer
-        open={showVideoPlayer}
-        onClose={() => setShowVideoPlayer(false)}
-        movieId={selectedMovie?.id || 0}
-        type={selectedMovie?.type || 'movie'}
-      />
     </>
   );
 };

@@ -36,7 +36,6 @@ const MovieDetail = ({ mediaType }: MovieDetailProps) => {
   const [inMyList, setInMyList] = useState(false);
   const [seasons, setSeasons] = useState<Season[]>([]);
   const [selectedEpisode, setSelectedEpisode] = useState<Episode | null>(null);
-  const [currentSeason, setCurrentSeason] = useState<number>(1);
 
   useEffect(() => {
     const fetchDetails = async () => {
@@ -130,7 +129,6 @@ const MovieDetail = ({ mediaType }: MovieDetailProps) => {
 
   const title = details.title || details.name;
   const releaseYear = (details.release_date || details.first_air_date)?.split('-')[0];
-  const type = details.first_air_date ? 'tv' : 'movie';
   const director = credits?.crew.find(person => person.job === 'Director');
   const writers = credits?.crew.filter(person => ['Writer', 'Screenplay'].includes(person.job));
   const cast = credits?.cast.slice(0, 6) || [];
@@ -485,7 +483,7 @@ const MovieDetail = ({ mediaType }: MovieDetailProps) => {
         }}
         movieId={selectedEpisode?.id || details?.id || 0}
         type={mediaType}
-        seasonNumber={selectedEpisode?.season_number || currentSeason}
+        seasonNumber={selectedEpisode?.season_number}
         episodeNumber={selectedEpisode?.episode_number}
         onNextEpisode={mediaType === 'tv' ? handleNextEpisode : undefined}
       />

@@ -1,5 +1,4 @@
 import { Box } from '@mui/material';
-import { useEffect, useState } from 'react';
 import FeaturedMovie from '../components/FeaturedMovie';
 import MovieRow from '../components/MovieRow';
 import {
