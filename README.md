@@ -48,6 +48,21 @@ npm run dev
 Make sure to set up the following environment variables in your `.env` file:
 - `VITE_TMDB_API_KEY`: Your TMDB API key
 
+## TODO
+
+Future improvements and features planned for this project:
+
+- [ ] Add user authentication
+- [ ] Implement user profiles
+- [ ] Add trailer playback functionality
+- [ ] Implement continue watching feature
+- [ ] Add rating system
+- [ ] Implement recommendations based on watch history
+- [ ] Add multiple language support
+- [ ] Implement parental controls
+- [ ] Add download functionality for offline viewing
+- [ ] Optimize performance and loading times
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
