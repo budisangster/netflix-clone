@@ -489,6 +489,61 @@ const Navbar = () => {
           </MenuItem>
         ))}
       </Menu>
+
+      <Menu
+        anchorEl={avatarAnchorEl}
+        open={Boolean(avatarAnchorEl)}
+        onClose={handleAvatarClose}
+        TransitionComponent={Fade}
+        sx={{
+          '& .MuiPaper-root': {
+            bgcolor: 'rgba(0, 0, 0, 0.9)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            mt: 0.5,
+          },
+        }}
+      >
+        <MenuItem
+          onClick={() => handleNavigation('/profile')}
+          sx={{
+            color: 'white',
+            fontSize: '0.9rem',
+            py: 1,
+            minWidth: 150,
+            '&:hover': {
+              bgcolor: 'rgba(255, 255, 255, 0.1)'
+            }
+          }}
+        >
+          Profile
+        </MenuItem>
+        <MenuItem
+          onClick={() => handleNavigation('/account')}
+          sx={{
+            color: 'white',
+            fontSize: '0.9rem',
+            py: 1,
+            '&:hover': {
+              bgcolor: 'rgba(255, 255, 255, 0.1)'
+            }
+          }}
+        >
+          Account
+        </MenuItem>
+        <MenuItem
+          onClick={() => handleNavigation('/')}
+          sx={{
+            color: 'white',
+            fontSize: '0.9rem',
+            py: 1,
+            '&:hover': {
+              bgcolor: 'rgba(255, 255, 255, 0.1)'
+            }
+          }}
+        >
+          Sign Out
+        </MenuItem>
+      </Menu>
     </>
   );
 };
